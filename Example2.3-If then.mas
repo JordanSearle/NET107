@@ -1,0 +1,54 @@
+/MARIE will consider characters after ‘/‘ as comments
+/MARIE uses the character '/' as comment delimiter
+/MARIE will ignore all text after character '/' until the end of the line
+
+	LOAD		x
+	Skipcond 	800			/Testing if Value is above 0
+	Jump		EndLOOP
+LOOP,	Load 		x			/Loading Copy
+	Subt		y			/Taking away Y's value
+	Store 		x			/Saving new value
+	Load		x
+	Skipcond 	400			/Testing if Value is = 0
+	JUMP		BOB
+	Jump 		EndLOOP	
+
+/If VALUE > 0 It goes back a step 
+ADDBACK,	LOAD 	x
+		ADD	y
+		STORE	x
+		LOAD	SUM
+		SUBT	NUM
+		STORE 	SUM
+		JUMP	EndLOOP
+		
+
+/TEMP NAME 
+BOB, 	LOAD		x
+	Skipcond	800			/Testing if Value is Below 0
+	Jump 		ADDBACK			/If Value isn't below or = to 0 it loops
+	Jump		DIVAMOUNT			
+
+/ENDS LOOP
+EndLOOP,	LOAD	SUM
+		ADD	NUM
+		STORE 	SUM
+		LOAD 	SUM
+		OUTPUT 		
+		Load 		x
+		Output		
+		Halt
+
+/Keeps track of divisions
+DIVAMOUNT,	LOAD	SUM
+		ADD	NUM
+		STORE	SUM
+		JUMP	LOOP
+
+
+
+	
+x,	Dec		13	/input Value
+y,	Dec		5	/Division Value
+SUM,	Dec		0	/Result Value
+NUM,	DEC		1

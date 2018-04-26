@@ -1,0 +1,13 @@
+ --------------------
+ Symbol    | Location
+ ----------+---------
+ ADDBACK   |   00A
+ BOB       |   011
+ DIVAMOUNT |   01D
+ EndLOOP   |   015
+ LOOP      |   003
+ NUM       |   024
+ SUM       |   023
+ x         |   021
+ y         |   022
+

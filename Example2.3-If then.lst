@@ -1,0 +1,78 @@
+     Assembly listing for: Example2.3-If then.mas
+                Assembled: Thu Apr 26 15:30:10 BST 2018
+
+         |                                /MARIE will consider characters after ‘/‘ as comments
+         |                                /MARIE uses the character '/' as comment delimiter
+         |                                /MARIE will ignore all text after character '/' until the end of the line
+         |                                
+000 1021 |            LOAD x               
+001 8800 |            SKIPCOND 800        /Testing if Value is above 0
+002 9015 |            JUMP EndLOOP         
+003 1021 |  LOOP      LOAD x              /Loading Copy
+004 4022 |            SUBT y              /Taking away Y's value
+005 2021 |            STORE x             /Saving new value
+006 1021 |            LOAD x               
+007 8400 |            SKIPCOND 400        /Testing if Value is = 0
+008 9011 |            JUMP BOB             
+009 9015 |            JUMP EndLOOP         
+         |                                
+         |                                /If VALUE > 0 It goes back a step 
+00A 1021 |  ADDBACK   LOAD x               
+00B 3022 |            ADD y                
+00C 2021 |            STORE x              
+00D 1023 |            LOAD SUM             
+00E 4024 |            SUBT NUM             
+00F 2023 |            STORE SUM            
+010 9015 |            JUMP EndLOOP         
+         |                                		
+         |                                
+         |                                /TEMP NAME 
+011 1021 |  BOB       LOAD x               
+012 8800 |            SKIPCOND 800        /Testing if Value is Below 0
+013 900A |            JUMP ADDBACK        /If Value isn't below or = to 0 it loops
+014 901D |            JUMP DIVAMOUNT       
+         |                                
+         |                                /ENDS LOOP
+015 1023 |  EndLOOP   LOAD SUM             
+016 3024 |            ADD NUM              
+017 2023 |            STORE SUM            
+018 1023 |            LOAD SUM             
+019 6000 |            OUTPUT               
+01A 1021 |            LOAD x               
+01B 6000 |            OUTPUT               
+01C 7000 |            HALT                 
+         |                                
+         |                                /Keeps track of divisions
+01D 1023 |  DIVAMOUNT LOAD SUM             
+01E 3024 |            ADD NUM              
+01F 2023 |            STORE SUM            
+020 9003 |            JUMP LOOP            
+         |                                
+         |                                
+         |                                
+         |                                	
+021 000D |  x         DEC 13              /input Value
+022 0005 |  y         DEC 5               /Division Value
+023 0000 |  SUM       DEC 0               /Result Value
+024 0001 |  NUM       DEC 1                
+
+Assembly successful.
+
+         SYMBOL TABLE
+         -----------------------------------------------------
+          Symbol    | Defined | References 
+         -----------+---------+-------------------------------
+          ADDBACK   |   00A   | 013
+          BOB       |   011   | 008
+          DIVAMOUNT |   01D   | 014
+          EndLOOP   |   015   | 002, 009, 010
+          LOOP      |   003   | 020
+          NUM       |   024   | 00E, 016, 01E
+          SUM       |   023   | 00D, 00F, 015, 017, 018, 01D, 
+                    |         | 01F
+          x         |   021   | 000, 003, 005, 006, 00A, 00C, 
+                    |         | 011, 01A
+          y         |   022   | 004, 00B
+         -----------------------------------------------------
+
+
